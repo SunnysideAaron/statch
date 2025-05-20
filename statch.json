@@ -1,0 +1,9 @@
+{
+    "template": {
+        "file": "example.tmpl",
+        "source": {
+            "file": "example.sql",
+            "type": "schema"
+        }
+    }
+}

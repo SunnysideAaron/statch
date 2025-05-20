@@ -1,0 +1,9 @@
+services:
+
+  statch:
+    build:
+      dockerfile: Dockerfile
+    container_name: statch
+    volumes:
+      - .:/statch
+    working_dir: /statch

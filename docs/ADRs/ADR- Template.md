@@ -1,4 +1,4 @@
-# ADR-0
+# ADR-
 
 ## Status
 

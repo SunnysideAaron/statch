@@ -1,0 +1,15 @@
+<p><%= "plush is great" %></p>
+
+<h2>Statch JSON Data:</h2>
+<pre>
+<%= inspect(statch) %>
+</pre>
+
+<h3>Template Information:</h3>
+<ul>
+  <li>Template File: <%= statch["template"]["file"] %></li>
+  <li>Source File: <%= statch["template"]["source"]["file"] %></li>
+  <li>Source Type: <%= statch["template"]["source"]["type"] %></li>
+</ul>
+
+test
