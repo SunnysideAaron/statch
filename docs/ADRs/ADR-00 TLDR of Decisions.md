@@ -1,0 +1,23 @@
+# ADR-00 TL;DR of Decisions
+
+- ADR-01 Using Architecture Decision Records
+  - Yes
+- ADR-02 Semantic Versioning
+  - Yes
+- ADR-03 CI/CD
+  - Not using CI/CD. Yet.
+- ADR-04 Language(s)
+  - Go
+- ADR-05 Go Coding Standards
+  - [Uber](https://github.com/uber-go/guide/blob/master/style.md)
+- ADR-06 Linters
+  - [golangci-lint](https://golangci-lint.run/)
+  - [govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck) 
+- ADR-07 Error Handling
+  - wrap errors
+  - stack trace will be handled by slog
+  - msg will be context only. Do not include calling or called function names. 
+  - Don't use words like "error", "failed", "went wrong" "error occurred", "problem found", "failed to ..." in error messages.
+  - don't use the ":" character anywhere else except the end of the message. 
+- TSDR-08 SQL Driver
+  - pgx
