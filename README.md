@@ -23,7 +23,7 @@ What separates statch from other code generators:
   endless cycle of users wanting more and more variations and ways to tweak the
   output. Creating more and more complexity. If you want different output use
   different templates.
-- Different templating package. sqlc uses [template](https://pkg.go.dev/text/template)
+- Different templating package. sqlc uses [template](https://pkg.go.dev/text/template).
   I personally find template gross. The code is ugly and difficult to read.
   "." notation is awful. Hiding where data is coming from. Others may like it
   but I had an immediate visceral reaction against it.
@@ -42,6 +42,8 @@ Future Goals
 - sqlite
 - mysql
 - ms sql server
+- templates not compiled into statch
 - source
   - yaml?
   - go structs / code?
+  - OpenAPI 3.0

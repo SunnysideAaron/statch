@@ -17,7 +17,8 @@ Someday it would be cool to have a better one.
 
 - https://go.dev/wiki/Gopher
 - https://github.com/golang-samples/gopher-vector
-
+- https://github.com/go-sprout/sprout
+  - I like the layout of their readme.
 
 ## Consequences
 
