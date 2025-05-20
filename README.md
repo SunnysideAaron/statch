@@ -1,6 +1,8 @@
+
+
 # statch
 
-**S**QL **T**emplate M**atch**ing
+| **S**QL **T**emplate M**atch**ing | ![statch logo](docs/logo/logo.jpg) |
 
 statch is a tool for matching data sources to templates for code generation.
 
@@ -21,17 +23,24 @@ What separates statch from other code generators:
   output. Creating more and more complexity. If you want different output use
   different templates.
 - Different templating package. sqlc uses [template](https://pkg.go.dev/text/template)
-  I personally find template from the standard library gross. The code is ugly and
-  difficult to read. "." notation is awful. Hiding where data is coming from. Others
-  may like it but I had an immediate visceral reaction against it.
+  I personally find template gross. The code is ugly and difficult to read.
+  "." notation is awful. Hiding where data is coming from. Others may like it
+  but I had an immediate visceral reaction against it.
 
 Initial Code Goals
 - PostreSQL
 - code generated for pgx
 - which template engine?
+- sources
+  - sql queries
+  - sql schema
+  - json
 
 Future Goals
 - any template engine
 - sqlite
 - mysql
 - ms sql server
+- source
+  - yaml?
+  - go structs / code?
