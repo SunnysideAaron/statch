@@ -1,4 +1,4 @@
-# ADR-012 Linters  
+# ADR-06 Linters  
 
 ## Status
 

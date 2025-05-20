@@ -15,7 +15,8 @@
   - [govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck) 
 - ADR-07 Error Handling
   - wrap errors
-  - stack trace will be handled by slog
+  - **TODO** stack trace will be handled by slog
+    - will this project use logging / slog?
   - msg will be context only. Do not include calling or called function names. 
   - Don't use words like "error", "failed", "went wrong" "error occurred", "problem found", "failed to ..." in error messages.
   - don't use the ":" character anywhere else except the end of the message. 

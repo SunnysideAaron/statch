@@ -1,4 +1,4 @@
-# ADR-013 Go Coding Standards
+# ADR-05 Go Coding Standards
 
 ## Status
 

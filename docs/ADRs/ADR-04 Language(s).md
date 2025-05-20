@@ -1,46 +1,38 @@
-# TSDR-001 Language(s) 
+# TSDR-04 Language(s) 
 
 ## Status
 
 Accepted
 
-## Context
-
-
-
 ## Decision
 
 Go
-
 
 ## Why / Notes
 
   - Compiled, easy to read, easy to maintain, and fast.
   - Concurrency
+  - It is the language I choose for a larger project I'm working on. I personally
+    want more experience in go.
 
 ## Consequences
 
 Project is locked into Go.
 
-## Other Options
+## Other Possible Options
 
-Possibilities:
-- Rust
-  - Pro: Compiled. Go has better out of the box support for concurrency.
-- Java
-  - Oracle dependant.
-- php
-  - Script not compiled. Will be a bottle neck at scale.
 - Python
-  - Script not compiled. Will be a bottle neck at scale.
-- Node.js
-  - Javascript is a terrible language. It was a hack developed in a few days. As
-    fast as it is, Node.js is at it's core just a way for javascript developers
-    to not have to learn another language.
+  - Script not compiled.
 
-Not an option:
+## Not an Option
+
 - c#
-  - Microsoft dependant. Cost
+  - Only barely used once or twice.
 - c++
-  - Ecosystem is a mess. Not used for much web development today beyond highly
-    optimized for speed code.
+  - Haven't used since college.
+- Java
+  - Haven't used since 2008.
+- php
+  - Script not compiled. Don't need more experience with it.
+- Rust
+  - Don't know  

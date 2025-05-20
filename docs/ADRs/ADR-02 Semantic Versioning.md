@@ -1,4 +1,4 @@
-# ADR-003 Semantic Versioning
+# ADR-02 Semantic Versioning
 
 ## Status
 
