@@ -1,8 +1,10 @@
-
+<div align="center">
+  <img src="docs/logo/logo.jpg">
+</div>
 
 # statch
 
-| **S**QL **T**emplate M**atch**ing | ![statch logo](docs/logo/logo.jpg) |
+**S**QL **T**emplate M**atch**ing 
 
 statch is a tool for matching data sources to templates for code generation.
 
@@ -10,8 +12,7 @@ What statch does:
 - links data sources to templates
 - provides tools to expose SQL schema and queries to the templating package
 
-Originally inspired by [sqlc](https://github.com/sqlc-dev/sqlc). If you are looking
-for a tool to generate code from SQL queries, take a look at sqlc. statch does allow
+Originally inspired by [sqlc](https://github.com/sqlc-dev/sqlc). statch does allow
 for code generation from SQL queries. But takes a higher level approach.
 
 What separates statch from other code generators:
