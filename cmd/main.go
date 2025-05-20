@@ -1,77 +1,62 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
 	"os"
 
-	"github.com/knadh/koanf/parsers/hjson"
-	"github.com/knadh/koanf/providers/file"
-	"github.com/knadh/koanf/v2"
+	"github.com/gobuffalo/plush/v5"
+	"github.com/hjson/hjson-go/v4"
 )
 
-var k = koanf.New(".")
-
-func loadConfig(configFile string) error {
-	if err := k.Load(file.Provider(configFile), hjson.Parser()); err != nil {
-		log.Fatalf("error loading config: %v", err)
+func loadHJSON(configFile string) (map[string]any, error) {
+	data, err := os.ReadFile(configFile)
+	if err != nil {
+		return nil, fmt.Errorf("reading hjson file: %w", err)
 	}
 
-	return nil
-}
-
-func main() {
-	// Define command line flags
-	configFile := flag.String("config", "config.hjson", "config file of templates to render")
-	flag.StringVar(configFile, "c", "config.hjson", "config file of templates to render (shorthand)")
-	flag.Parse()
-
-	// Load the configuration
-	if err := loadConfig(*configFile); err != nil {
-		log.Fatalf("error loading config: %v", err)
+	var config map[string]any
+	if err := hjson.Unmarshal(data, &config); err != nil {
+		return nil, fmt.Errorf("parsing hjson: %w", err)
 	}
 
-	println(k.String("template.file"))
-
-	// ctx := plush.NewContext()
-
-	// // Read statch.json and add it to context
-	// statchData, err := readStatchJSON("statch.json")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// ctx.Set("statch", statchData)
-
-	// s, err := plush.Render(template(), ctx)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// err = os.WriteFile("example.go", []byte(s), 0644)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	return config, nil
 }
 
-func template() string {
-	b, err := os.ReadFile("example.plush")
+func loadTemplate(file string) string {
+	b, err := os.ReadFile(file)
 	if err != nil {
 		log.Fatal(err)
 	}
 	return string(b)
 }
 
-func readStatchJSON(path string) (map[string]interface{}, error) {
-	data, err := os.ReadFile(path)
+func main() {
+	// Load the configuration
+	configFile := flag.String("config", "config.hjson", "config file of templates to render")
+	flag.StringVar(configFile, "c", "config.hjson", "config file of templates to render (shorthand)")
+	flag.Parse()
+
+	config, err := loadHJSON(*configFile)
 	if err != nil {
-		return nil, fmt.Errorf("reading statch.json: %w", err)
+		log.Fatalf("error loading config: %v", err)
 	}
 
-	var result map[string]interface{}
-	if err := json.Unmarshal(data, &result); err != nil {
-		return nil, fmt.Errorf("parsing statch.json: %w", err)
+	ctx := plush.NewContext()
+	ctx.Set("config", config)
+
+	output := config["output"].(map[string]any)
+	t := loadTemplate(output["templateFile"].(string))
+
+	s, err := plush.Render(t, ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = os.WriteFile(output["file"].(string), []byte(s), 0644)
+	if err != nil {
+
+		log.Fatal(err)
 	}
 
-	return result, nil
 }
