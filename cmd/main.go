@@ -32,6 +32,17 @@ func loadTemplate(file string) string {
 	return string(b)
 }
 
+func loadSchema(file string) (map[string]any, error) {
+	data, err := os.ReadFile(file)
+	if err != nil {
+		return nil, fmt.Errorf("reading schema file: %w", err)
+	}
+
+	// TODO: Add actual schema parsing logic here
+	// For now, just return the content as a string in a map
+	return map[string]any{"content": string(data)}, nil
+}
+
 func main() {
 	// Load the configuration
 	configFile := flag.String("config", "config.hjson", "config file of templates to render")
@@ -42,9 +53,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("error loading config: %v", err)
 	}
-
-	ctx := plush.NewContext()
-	ctx.Set("config", config)
 
 	// Process multiple outputs
 	outputs, ok := config["outputs"].([]any)
@@ -68,12 +76,40 @@ func main() {
 			log.Fatal("output missing outputFile")
 		}
 
-		// Create a new context for each output
-		outCtx := plush.NewContext()
-		outCtx.Set("config", output)
+		ctx := plush.NewContext()
+		ctx.Set("config", output)
+
+		// Process sources if they exist
+		if sources, ok := output["sources"].([]any); ok {
+			for _, src := range sources {
+				source, ok := src.(map[string]any)
+				if !ok {
+					log.Fatal("source is not a valid object")
+				}
+
+				sourceFile, ok := source["sourceFile"].(string)
+				if !ok {
+					log.Fatal("source missing sourceFile")
+				}
+
+				sourceType, ok := source["type"].(string)
+				if !ok {
+					log.Fatal("source missing type")
+				}
+
+				if sourceType == "schema" {
+					schema, err := loadSchema(sourceFile)
+					if err != nil {
+						log.Fatalf("error loading schema %s: %v", sourceFile, err)
+					}
+					ctx.Set("schema", schema)
+				}
+				// Other source types can be handled here
+			}
+		}
 
 		t := loadTemplate(templateFile)
-		s, err := plush.Render(t, outCtx)
+		s, err := plush.Render(t, ctx)
 		if err != nil {
 			log.Fatalf("error rendering template %s: %v", templateFile, err)
 		}

@@ -5,11 +5,11 @@
             templateFile: ./example0/models.plush
             sources: [
                 {
-                    file: schema.sql
+                    sourceFile: ./example0/schema.sql
                     type: schema
                 },
                 {
-                    file: queries.sql
+                    sourceFile: queries.sql
                     type: queries
                 }
             ]
@@ -19,11 +19,11 @@
             templateFile: ./example0/models.plush
             sources: [
                 {
-                    file: schema.sql
+                    sourceFile: ./example0/schema.sql
                     type: schema
                 },
                 {
-                    file: queries.sql
+                    sourceFile: queries.sql
                     type: queries
                 }
             ]
