@@ -15,14 +15,14 @@ type Author struct {
 Inspect config: map[outputFile:./example0/models.go sources:[map[sourceFile:./example0/schema.sql type:schema] map[sourceFile:queries.sql type:queries]] templateFile:./example0/models.plush]
 Template File: ./example0/models.go</li>
 
-Inspect schema: map[content:CREATE TABLE author (
+Inspect schema: map[statements:[-- I&#39;m a comment
+CREATE TABLE author (
   id   BIGSERIAL PRIMARY KEY,
   name text      NOT NULL,
   bio  text
-);
-
+) -- I also deserve a comment
 CREATE TABLE book (
   id          BIGSERIAL PRIMARY KEY,
   name        text      NOT NULL,
   description text
-);]
+)]]
