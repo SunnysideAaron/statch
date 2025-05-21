@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted, Proposed, Deprecated or Superseded (list DR)
+Accepted
 
 ## Context
 
@@ -10,11 +10,13 @@ Accepted, Proposed, Deprecated or Superseded (list DR)
 
 ## Decision
 
-[templ](https://github.com/a-h/templ)
+[plush](https://github.com/gobuffalo/plush)
 
 ## Why
 
-Of the choices left templ has the largest user base.
+plush templates are not compiled into the binary. Instead interpreted at runtime.
+Since we want users of statch to be able to write their own templates this would
+be a good thing.
 
 ## Notes
 
@@ -34,6 +36,7 @@ Of the choices left templ has the largest user base.
     interpreted at runtime. Since we want users of statch to be able to write their
     own templates this would be a good thing.
 - [templ](https://github.com/a-h/templ) - A HTML templating language that has great developer tooling.
+  - Of the choices left templ has the largest user base.
 - [Awesome go's list of template engines](https://github.com/avelino/awesome-go?tab=readme-ov-file#template-engines)
 
 ## Not an Option

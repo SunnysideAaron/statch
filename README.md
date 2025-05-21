@@ -35,15 +35,17 @@ Initial Code Goals
 - sources
   - sql queries
   - sql schema
-  - json
+  - [hjson](https://hjson.github.io/)
 
 Future Goals
 - any template engine
+  - probably a stretch
 - sqlite
 - mysql
 - ms sql server
 - templates not compiled into statch
 - source
+  - json
   - yaml?
   - go structs / code?
   - OpenAPI 3.0
