@@ -7,7 +7,7 @@
 
 <h3>Template Information:</h3>
 <ul>
-  <li>Template File: <%= config["output"]["file"] %></li>
+  <li>Template File: <%= config["outputFile"] %></li>
 </ul>
 
 test

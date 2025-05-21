@@ -46,17 +46,41 @@ func main() {
 	ctx := plush.NewContext()
 	ctx.Set("config", config)
 
-	output := config["output"].(map[string]any)
-	t := loadTemplate(output["templateFile"].(string))
-
-	s, err := plush.Render(t, ctx)
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = os.WriteFile(output["file"].(string), []byte(s), 0644)
-	if err != nil {
-
-		log.Fatal(err)
+	// Process multiple outputs
+	outputs, ok := config["outputs"].([]any)
+	if !ok {
+		log.Fatal("config file missing 'outputs' array")
 	}
 
+	for _, out := range outputs {
+		output, ok := out.(map[string]any)
+		if !ok {
+			log.Fatal("output is not a valid object")
+		}
+
+		templateFile, ok := output["templateFile"].(string)
+		if !ok {
+			log.Fatal("output missing templateFile")
+		}
+
+		outputFile, ok := output["outputFile"].(string)
+		if !ok {
+			log.Fatal("output missing outputFile")
+		}
+
+		// Create a new context for each output
+		outCtx := plush.NewContext()
+		outCtx.Set("config", output)
+
+		t := loadTemplate(templateFile)
+		s, err := plush.Render(t, outCtx)
+		if err != nil {
+			log.Fatalf("error rendering template %s: %v", templateFile, err)
+		}
+
+		err = os.WriteFile(outputFile, []byte(s), 0644)
+		if err != nil {
+			log.Fatalf("error writing to file %s: %v", outputFile, err)
+		}
+	}
 }
