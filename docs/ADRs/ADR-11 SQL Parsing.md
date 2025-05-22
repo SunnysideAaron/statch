@@ -10,16 +10,12 @@ SQL lexing, parsing, and Abstract Syntax Tree (AST) generation.
 
 ## Decision
 
-[GoSQLX](https://github.com/ajitpratap0/GoSQLX)
 
 ## Why
 
-Honestly, just rolling the dice. Too new to have a community but I'm liking the
-brochure. Other parsers are old or would require copying out of other projects.
 
 ## Notes
 
-[Introducing GoSQLX: A SQL Query Parser for Go (Not a Replacement for sqlx)](https://medium.com/@ajitpratapsingh/introducing-gosqlx-a-sql-query-parser-for-go-not-a-replacement-for-sqlx-1cfc2bf52d52)
 
 ## Consequences
 
@@ -31,6 +27,7 @@ brochure. Other parsers are old or would require copying out of other projects.
 - [GoSQLX](https://github.com/ajitpratap0/GoSQLX)
   - [Introducing GoSQLX: A SQL Query Parser for Go (Not a Replacement for sqlx)](https://medium.com/@ajitpratapsingh/introducing-gosqlx-a-sql-query-parser-for-go-not-a-replacement-for-sqlx-1cfc2bf52d52)
   - New, but I'm liking the brochure.
+  - Code is very very new. Basic examples don't work.
 - [sqlc](https://github.com/sqlc-dev/sqlc)
   - Would have to rip out and copy a lot of code but it is possible. Could
     release as it's own library? The maintainers of that library might not like that...

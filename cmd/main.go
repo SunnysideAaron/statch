@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/gobuffalo/plush/v5"
 	"github.com/hjson/hjson-go/v4"
@@ -38,9 +39,20 @@ func loadSchema(file string) (map[string]any, error) {
 		return nil, fmt.Errorf("reading schema file: %w", err)
 	}
 
-	// TODO: Add actual schema parsing logic here
-	// For now, just return the content as a string in a map
-	return map[string]any{"content": string(data)}, nil
+	// Parse the schema file by splitting on semicolons
+	content := string(data)
+	rawStatements := strings.Split(content, ";")
+
+	// Clean up statements and remove empty ones
+	var statements []string
+	for _, stmt := range rawStatements {
+		trimmed := strings.TrimSpace(stmt)
+		if trimmed != "" {
+			statements = append(statements, trimmed)
+		}
+	}
+
+	return map[string]any{"statements": statements}, nil
 }
 
 func main() {
