@@ -15,14 +15,51 @@ type Author struct {
 Inspect config: map[outputFile:./example0/models2.go sources:[map[sourceFile:./example0/schema.sql type:schema] map[sourceFile:queries.sql type:queries]] templateFile:./example0/models.plush]
 Template File: ./example0/models2.go</li>
 
-Inspect schema: map[statements:[-- I&#39;m a comment
+Inspect schema: map[statements:[map[parse_result:version:170004  stmts:{stmt:{create_stmt:{relation:{relname:&#34;author&#34;  inh:true  relpersistence:&#34;p&#34;  location:31}  table_elts:{column_def:{colname:&#34;id&#34;  type_name:{names:{string:{sval:&#34;bigserial&#34;}}  typemod:-1  location:48}  is_local:true  constraints:{constraint:{contype:CONSTR_PRIMARY  location:58}}  location:43}}  table_elts:{column_def:{colname:&#34;name&#34;  type_name:{names:{string:{sval:&#34;text&#34;}}  typemod:-1  location:79}  is_local:true  constraints:{constraint:{contype:CONSTR_NOTNULL  location:89}}  location:74}}  table_elts:{column_def:{colname:&#34;bio&#34;  type_name:{names:{string:{sval:&#34;text&#34;}}  typemod:-1  location:126}  is_local:true  location:121}}  oncommit:ONCOMMIT_NOOP}}} sql:-- I&#39;m a comment
 CREATE TABLE author (
   id   BIGSERIAL PRIMARY KEY,
-  name text      NOT NULL,
+  name text      NOT NULL, -- In line comment
   bio  text
-) -- I also deserve a comment
+)] map[parse_result:version:170004  stmts:{stmt:{create_stmt:{relation:{relname:&#34;book&#34;  inh:true  relpersistence:&#34;p&#34;  location:42}  table_elts:{column_def:{colname:&#34;id&#34;  type_name:{names:{string:{sval:&#34;bigserial&#34;}}  typemod:-1  location:64}  is_local:true  constraints:{constraint:{contype:CONSTR_PRIMARY  location:74}}  location:52}}  table_elts:{column_def:{colname:&#34;name&#34;  type_name:{names:{string:{sval:&#34;text&#34;}}  typemod:-1  location:102}  is_local:true  constraints:{constraint:{contype:CONSTR_NOTNULL  location:112}}  location:90}}  table_elts:{column_def:{colname:&#34;description&#34;  type_name:{names:{string:{sval:&#34;text&#34;}}  typemod:-1  location:137}  is_local:true  location:125}}  oncommit:ONCOMMIT_NOOP}}} sql:-- I also deserve a comment
 CREATE TABLE book (
   id          BIGSERIAL PRIMARY KEY,
   name        text      NOT NULL,
   description text
-)]]
+)]]]
+
+<p>Testing Plush Template</p>
+
+
+  <p>Schema exists</p>
+
+
+<p>Schema Statements:</p>
+
+
+  <ul>
+    
+      <li>
+        <strong>SQL:</strong> -- I&#39;m a comment
+CREATE TABLE author (
+  id   BIGSERIAL PRIMARY KEY,
+  name text      NOT NULL, -- In line comment
+  bio  text
+)
+        <br>
+        <strong>Parse Result:</strong> version:170004  stmts:{stmt:{create_stmt:{relation:{relname:&#34;author&#34;  inh:true  relpersistence:&#34;p&#34;  location:31}  table_elts:{column_def:{colname:&#34;id&#34;  type_name:{names:{string:{sval:&#34;bigserial&#34;}}  typemod:-1  location:48}  is_local:true  constraints:{constraint:{contype:CONSTR_PRIMARY  location:58}}  location:43}}  table_elts:{column_def:{colname:&#34;name&#34;  type_name:{names:{string:{sval:&#34;text&#34;}}  typemod:-1  location:79}  is_local:true  constraints:{constraint:{contype:CONSTR_NOTNULL  location:89}}  location:74}}  table_elts:{column_def:{colname:&#34;bio&#34;  type_name:{names:{string:{sval:&#34;text&#34;}}  typemod:-1  location:126}  is_local:true  location:121}}  oncommit:ONCOMMIT_NOOP}}}
+      </li>
+    
+      <li>
+        <strong>SQL:</strong> -- I also deserve a comment
+CREATE TABLE book (
+  id          BIGSERIAL PRIMARY KEY,
+  name        text      NOT NULL,
+  description text
+)
+        <br>
+        <strong>Parse Result:</strong> version:170004  stmts:{stmt:{create_stmt:{relation:{relname:&#34;book&#34;  inh:true  relpersistence:&#34;p&#34;  location:42}  table_elts:{column_def:{colname:&#34;id&#34;  type_name:{names:{string:{sval:&#34;bigserial&#34;}}  typemod:-1  location:64}  is_local:true  constraints:{constraint:{contype:CONSTR_PRIMARY  location:74}}  location:52}}  table_elts:{column_def:{colname:&#34;name&#34;  type_name:{names:{string:{sval:&#34;text&#34;}}  typemod:-1  location:102}  is_local:true  constraints:{constraint:{contype:CONSTR_NOTNULL  location:112}}  location:90}}  table_elts:{column_def:{colname:&#34;description&#34;  type_name:{names:{string:{sval:&#34;text&#34;}}  typemod:-1  location:137}  is_local:true  location:125}}  oncommit:ONCOMMIT_NOOP}}}
+      </li>
+    
+  </ul>
+
+

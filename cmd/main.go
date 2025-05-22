@@ -9,6 +9,8 @@ import (
 
 	"github.com/gobuffalo/plush/v5"
 	"github.com/hjson/hjson-go/v4"
+
+	pg_query "github.com/pganalyze/pg_query_go/v6"
 )
 
 func loadHJSON(configFile string) (map[string]any, error) {
@@ -33,6 +35,18 @@ func loadTemplate(file string) string {
 	return string(b)
 }
 
+// func parseSchema(schema string) ([]pg_query.ParseResult, error) {
+// 	return pg_query.Parse(schema)
+// }
+
+// func parseSchema() {
+// 	tree, err := pg_query.ParseToJSON("SELECT 1")
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	fmt.Printf("%s\n", tree)
+// }
+
 func loadSchema(file string) (map[string]any, error) {
 	data, err := os.ReadFile(file)
 	if err != nil {
@@ -44,15 +58,27 @@ func loadSchema(file string) (map[string]any, error) {
 	rawStatements := strings.Split(content, ";")
 
 	// Clean up statements and remove empty ones
-	var statements []string
+	var statementsData []map[string]any
 	for _, stmt := range rawStatements {
 		trimmed := strings.TrimSpace(stmt)
-		if trimmed != "" {
-			statements = append(statements, trimmed)
+		if trimmed == "" {
+			continue
 		}
+
+		// Parse each statement with pg_query
+		parseResult, err := pg_query.Parse(trimmed)
+		if err != nil {
+			// Skip statements that can't be parsed
+			continue
+		}
+
+		statementsData = append(statementsData, map[string]any{
+			"sql":          trimmed,
+			"parse_result": parseResult,
+		})
 	}
 
-	return map[string]any{"statements": statements}, nil
+	return map[string]any{"statements": statementsData}, nil
 }
 
 func main() {

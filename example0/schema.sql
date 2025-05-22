@@ -1,7 +1,7 @@
 -- I'm a comment
 CREATE TABLE author (
   id   BIGSERIAL PRIMARY KEY,
-  name text      NOT NULL,
+  name text      NOT NULL, -- In line comment
   bio  text
 );
 
