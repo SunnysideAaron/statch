@@ -10,6 +10,9 @@ SQL lexing, parsing, and Abstract Syntax Tree (AST) generation.
 
 ## Decision
 
+- [pg_query_go](https://github.com/pganalyze/pg_query_go)
+  - Uses the actual PostgreSQL server source to parse SQL queries and return the internal PostgreSQL parse tree
+  - https://github.com/xataio/pg_query_go/tree/additional-features
 
 ## Why
 
@@ -24,18 +27,16 @@ SQL lexing, parsing, and Abstract Syntax Tree (AST) generation.
 
 - [gosqlparser](https://github.com/krasun/gosqlparser)
   - older but nice and simple.
-- [GoSQLX](https://github.com/ajitpratap0/GoSQLX)
-  - [Introducing GoSQLX: A SQL Query Parser for Go (Not a Replacement for sqlx)](https://medium.com/@ajitpratapsingh/introducing-gosqlx-a-sql-query-parser-for-go-not-a-replacement-for-sqlx-1cfc2bf52d52)
-  - New, but I'm liking the brochure.
-  - Code is very very new. Basic examples don't work.
 - [sqlc](https://github.com/sqlc-dev/sqlc)
   - Would have to rip out and copy a lot of code but it is possible. Could
     release as it's own library? The maintainers of that library might not like that...
+    can i link to just a plugin? or just package? sqlc seems to do that with their AST engines. at least of dolphin the mysql one.
 - [sqlparser](https://github.com/marianogappa/sqlparser)
   - [Let's build a SQL parser in Go!](https://marianogappa.github.io/software/2019/06/05/lets-build-a-sql-parser-in-go/)
   - tutorial on building a simple sql parser.
-- [pg_query_go](https://github.com/pganalyze/pg_query_go)
-  - Uses the actual PostgreSQL server source to parse SQL queries and return the internal PostgreSQL parse tree
+
+- pgx
+  - does pgx have a parser?
 
 ## Not an Option
 
@@ -44,6 +45,10 @@ SQL lexing, parsing, and Abstract Syntax Tree (AST) generation.
 - [vitess-sqlparser](https://github.com/blastrain/vitess-sqlparser)
   - SQL and DDL parser for Go (powered by vitess and TiDB)
   - Old but also lists several other options.
+- [GoSQLX](https://github.com/ajitpratap0/GoSQLX)
+  - [Introducing GoSQLX: A SQL Query Parser for Go (Not a Replacement for sqlx)](https://medium.com/@ajitpratapsingh/introducing-gosqlx-a-sql-query-parser-for-go-not-a-replacement-for-sqlx-1cfc2bf52d52)
+  - New, but I'm liking the brochure. 2025-05
+  - Code is very very new. Basic examples don't work.
 
 ## sqlc Notes
 
