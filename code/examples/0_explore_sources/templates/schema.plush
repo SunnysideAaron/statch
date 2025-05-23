@@ -4,7 +4,7 @@
 
 Shows how to use use a schema source.
 
-## Inspect config
+## Inspect config 
 
 <%= inspect(config) %>
 
@@ -14,7 +14,9 @@ Shows how to use use a schema source.
   - sourceFile: <%= src["sourceFile"] %>
   - type: <%= src["type"] %>
 <% } %>
-## Inspect schema
+## Inspect schema 
+
+**TODO** config and schema should be replaced with file names - and type (renamed to source handler)
 
 <%= inspect(schema) %>
 
