@@ -63,3 +63,20 @@ first time will take awhile to build because of postgress parse dependency
 
 make build  
 
+navigate to an example.
+
+statch 
+
+
+statch -c config.hjson
+
+(cd /home/code && make build)
+
+
+examples
+
+multiple sources
+
+sqc min
+sqc all flags
+

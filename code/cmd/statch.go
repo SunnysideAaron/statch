@@ -109,9 +109,9 @@ func main() {
 			log.Fatal("output missing templateFile")
 		}
 
-		outputFile, ok := output["outputFile"].(string)
+		generatedFile, ok := output["generatedFile"].(string)
 		if !ok {
-			log.Fatal("output missing outputFile")
+			log.Fatal("output missing generatedFile")
 		}
 
 		ctx := plush.NewContext()
@@ -152,9 +152,9 @@ func main() {
 			log.Fatalf("error rendering template %s: %v", templateFile, err)
 		}
 
-		err = os.WriteFile(outputFile, []byte(s), 0644)
+		err = os.WriteFile(generatedFile, []byte(s), 0644)
 		if err != nil {
-			log.Fatalf("error writing to file %s: %v", outputFile, err)
+			log.Fatalf("error writing to file %s: %v", generatedFile, err)
 		}
 	}
 }
