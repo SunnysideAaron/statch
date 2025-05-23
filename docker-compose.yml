@@ -1,9 +1,13 @@
 services:
 
-  statch:
+  code:
     build:
+      context: ./code
       dockerfile: Dockerfile
-    container_name: statch
+    container_name: code
     volumes:
-      - .:/statch
-    working_dir: /statch
+      - ./code:/home/code
+      # be careful. don't use a bin that other things are installing into during
+      # build or it will overwrite when mounting. why we don't use /go/bin      
+      - ./bin:/usr/local/bin
+    working_dir: /home/code

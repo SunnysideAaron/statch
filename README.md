@@ -49,3 +49,11 @@ Future Goals
   - yaml?
   - go structs / code?
   - OpenAPI 3.0
+
+make bash
+  build docker and run bash in container
+
+first time will take awhile to build because of postgress parse dependency
+
+make build  
+

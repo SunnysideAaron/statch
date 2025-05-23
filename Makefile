@@ -1,8 +1,8 @@
 build:
-	@docker compose build statch
+	@docker compose build code
 
 bash:
-	@docker compose run --remove-orphans --service-ports statch bash
+	@docker compose run --remove-orphans --service-ports code bash
 
 # **************************************************
 
