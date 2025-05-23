@@ -1,0 +1,32 @@
+{
+    outputs: [
+        {
+            outputFile: ./models.go
+            templateFile: ./models.plush
+            sources: [
+                {
+                    sourceFile: ./schema.sql
+                    type: schema
+                },
+                {
+                    sourceFile: queries.sql
+                    type: queries
+                }
+            ]
+        },
+        {
+            outputFile: ./models2.go
+            templateFile: ./models.plush
+            sources: [
+                {
+                    sourceFile: ./schema.sql
+                    type: schema
+                },
+                {
+                    sourceFile: queries.sql
+                    type: queries
+                }
+            ]
+        },        
+    ]
+}

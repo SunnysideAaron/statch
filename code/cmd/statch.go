@@ -1,4 +1,4 @@
-package statch
+package main
 
 import (
 	"flag"

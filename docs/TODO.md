@@ -1,0 +1,1 @@
+statch version output

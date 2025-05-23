@@ -50,6 +50,12 @@ Future Goals
   - go structs / code?
   - OpenAPI 3.0
 
+
+can't possibly predict what everyone will want their output code to look like
+
+it's dumb
+
+
 make bash
   build docker and run bash in container
 
