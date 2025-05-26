@@ -4,26 +4,26 @@
 
 Shows how to use use a schema source.
 
-## Inspect config
+## Inspect config 
 
-map[generatedFile:./generated/schema.md sources:[map[sourceFile:./sources/schema.sql type:schema]] templateFile:./templates/schema.plush]
+map[generatedFile:./generated/schema.md sources:[map[function:loadSchema sourceFile:./sources/schema.sql]] templateFile:./templates/schema.plush]
 
 - generatedFile: ./generated/schema.md
 - templateFile: ./templates/schema.plush
 - sources:
-
   - sourceFile: ./sources/schema.sql
-  - type: schema
+  - function: loadSchema
 
+## Inspect schema 
 
-## Inspect schema
+**TODO** config and schema should be replaced with file names - and type (renamed to source handler)
 
-map[statements:[map[parse_result:version:170004 stmts:{stmt:{create_stmt:{relation:{relname:&#34;author&#34; inh:true relpersistence:&#34;p&#34; location:31} table_elts:{column_def:{colname:&#34;id&#34; type_name:{names:{string:{sval:&#34;bigserial&#34;}} typemod:-1 location:48} is_local:true constraints:{constraint:{contype:CONSTR_PRIMARY location:58}} location:43}} table_elts:{column_def:{colname:&#34;name&#34; type_name:{names:{string:{sval:&#34;text&#34;}} typemod:-1 location:79} is_local:true constraints:{constraint:{contype:CONSTR_NOTNULL location:89}} location:74}} table_elts:{column_def:{colname:&#34;bio&#34; type_name:{names:{string:{sval:&#34;text&#34;}} typemod:-1 location:126} is_local:true location:121}} oncommit:ONCOMMIT_NOOP}}} sql:-- I&#39;m a comment
+map[query:[map[parse_result:{&#34;version&#34;:170004,&#34;stmts&#34;:[{&#34;stmt&#34;:{&#34;CreateStmt&#34;:{&#34;relation&#34;:{&#34;relname&#34;:&#34;author&#34;,&#34;inh&#34;:true,&#34;relpersistence&#34;:&#34;p&#34;,&#34;location&#34;:31},&#34;tableElts&#34;:[{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;id&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;bigserial&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:48},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_PRIMARY&#34;,&#34;location&#34;:58}}],&#34;location&#34;:43}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;name&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:79},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_NOTNULL&#34;,&#34;location&#34;:89}}],&#34;location&#34;:74}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;bio&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:126},&#34;is_local&#34;:true,&#34;location&#34;:121}}],&#34;oncommit&#34;:&#34;ONCOMMIT_NOOP&#34;}}}]} query:-- I&#39;m a comment
 CREATE TABLE author (
   id   BIGSERIAL PRIMARY KEY,
   name text      NOT NULL, -- In line comment
   bio  text
-)] map[parse_result:version:170004 stmts:{stmt:{create_stmt:{relation:{relname:&#34;book&#34; inh:true relpersistence:&#34;p&#34; location:68} table_elts:{column_def:{colname:&#34;id&#34; type_name:{names:{string:{sval:&#34;bigserial&#34;}} typemod:-1 location:90} is_local:true constraints:{constraint:{contype:CONSTR_PRIMARY location:100}} location:78}} table_elts:{column_def:{colname:&#34;name&#34; type_name:{names:{string:{sval:&#34;text&#34;}} typemod:-1 location:128} is_local:true constraints:{constraint:{contype:CONSTR_NOTNULL location:138}} location:116}} table_elts:{column_def:{colname:&#34;description&#34; type_name:{names:{string:{sval:&#34;text&#34;}} typemod:-1 location:163} is_local:true location:151}} oncommit:ONCOMMIT_NOOP}}} sql:/* I also deserve a comment
+)] map[parse_result:{&#34;version&#34;:170004,&#34;stmts&#34;:[{&#34;stmt&#34;:{&#34;CreateStmt&#34;:{&#34;relation&#34;:{&#34;relname&#34;:&#34;book&#34;,&#34;inh&#34;:true,&#34;relpersistence&#34;:&#34;p&#34;,&#34;location&#34;:68},&#34;tableElts&#34;:[{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;id&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;bigserial&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:90},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_PRIMARY&#34;,&#34;location&#34;:100}}],&#34;location&#34;:78}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;name&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:128},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_NOTNULL&#34;,&#34;location&#34;:138}}],&#34;location&#34;:116}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;description&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:163},&#34;is_local&#34;:true,&#34;location&#34;:151}}],&#34;oncommit&#34;:&#34;ONCOMMIT_NOOP&#34;}}}]} query:/* I also deserve a comment
    on a second line.
 */
 CREATE TABLE book (
@@ -32,30 +32,33 @@ CREATE TABLE book (
   description text
 )]]]
 
-Testing Plush Template>
 
+## query
 
-  <p>Schema exists</p>
-
-
-<p>Schema Statements:</p>
-
-
-  <ul>
-    
-      <li>
-        <strong>SQL:</strong> -- I&#39;m a comment
+```sql
+-- I&#39;m a comment
 CREATE TABLE author (
   id   BIGSERIAL PRIMARY KEY,
   name text      NOT NULL, -- In line comment
   bio  text
 )
-        <br>
-        <strong>Parse Result:</strong> version:170004 stmts:{stmt:{create_stmt:{relation:{relname:&#34;author&#34; inh:true relpersistence:&#34;p&#34; location:31} table_elts:{column_def:{colname:&#34;id&#34; type_name:{names:{string:{sval:&#34;bigserial&#34;}} typemod:-1 location:48} is_local:true constraints:{constraint:{contype:CONSTR_PRIMARY location:58}} location:43}} table_elts:{column_def:{colname:&#34;name&#34; type_name:{names:{string:{sval:&#34;text&#34;}} typemod:-1 location:79} is_local:true constraints:{constraint:{contype:CONSTR_NOTNULL location:89}} location:74}} table_elts:{column_def:{colname:&#34;bio&#34; type_name:{names:{string:{sval:&#34;text&#34;}} typemod:-1 location:126} is_local:true location:121}} oncommit:ONCOMMIT_NOOP}}}
-      </li>
-    
-      <li>
-        <strong>SQL:</strong> /* I also deserve a comment
+```
+
+**Parse Result**
+
+
+**Type:** unknown
+
+{&#34;version&#34;:170004,&#34;stmts&#34;:[{&#34;stmt&#34;:{&#34;CreateStmt&#34;:{&#34;relation&#34;:{&#34;relname&#34;:&#34;author&#34;,&#34;inh&#34;:true,&#34;relpersistence&#34;:&#34;p&#34;,&#34;location&#34;:31},&#34;tableElts&#34;:[{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;id&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;bigserial&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:48},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_PRIMARY&#34;,&#34;location&#34;:58}}],&#34;location&#34;:43}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;name&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:79},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_NOTNULL&#34;,&#34;location&#34;:89}}],&#34;location&#34;:74}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;bio&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:126},&#34;is_local&#34;:true,&#34;location&#34;:121}}],&#34;oncommit&#34;:&#34;ONCOMMIT_NOOP&#34;}}}]}
+
+// here
+
+
+
+## query
+
+```sql
+/* I also deserve a comment
    on a second line.
 */
 CREATE TABLE book (
@@ -63,10 +66,16 @@ CREATE TABLE book (
   name        text      NOT NULL,
   description text
 )
-        <br>
-        <strong>Parse Result:</strong> version:170004 stmts:{stmt:{create_stmt:{relation:{relname:&#34;book&#34; inh:true relpersistence:&#34;p&#34; location:68} table_elts:{column_def:{colname:&#34;id&#34; type_name:{names:{string:{sval:&#34;bigserial&#34;}} typemod:-1 location:90} is_local:true constraints:{constraint:{contype:CONSTR_PRIMARY location:100}} location:78}} table_elts:{column_def:{colname:&#34;name&#34; type_name:{names:{string:{sval:&#34;text&#34;}} typemod:-1 location:128} is_local:true constraints:{constraint:{contype:CONSTR_NOTNULL location:138}} location:116}} table_elts:{column_def:{colname:&#34;description&#34; type_name:{names:{string:{sval:&#34;text&#34;}} typemod:-1 location:163} is_local:true location:151}} oncommit:ONCOMMIT_NOOP}}}
-      </li>
-    
-  </ul>
+```
+
+**Parse Result**
+
+
+**Type:** unknown
+
+{&#34;version&#34;:170004,&#34;stmts&#34;:[{&#34;stmt&#34;:{&#34;CreateStmt&#34;:{&#34;relation&#34;:{&#34;relname&#34;:&#34;book&#34;,&#34;inh&#34;:true,&#34;relpersistence&#34;:&#34;p&#34;,&#34;location&#34;:68},&#34;tableElts&#34;:[{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;id&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;bigserial&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:90},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_PRIMARY&#34;,&#34;location&#34;:100}}],&#34;location&#34;:78}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;name&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:128},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_NOTNULL&#34;,&#34;location&#34;:138}}],&#34;location&#34;:116}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;description&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:163},&#34;is_local&#34;:true,&#34;location&#34;:151}}],&#34;oncommit&#34;:&#34;ONCOMMIT_NOOP&#34;}}}]}
+
+// here
+
 
 

@@ -55,30 +55,32 @@ func loadSchema(file string) (map[string]any, error) {
 
 	// Parse the schema file by splitting on semicolons
 	content := string(data)
-	rawStatements := strings.Split(content, ";")
+	rawQueries := strings.Split(content, ";")
 
-	// Clean up statements and remove empty ones
-	var statementsData []map[string]any
-	for _, stmt := range rawStatements {
+	// Clean up queries and remove empty ones
+	var qData []map[string]any
+	for _, stmt := range rawQueries {
 		trimmed := strings.TrimSpace(stmt)
 		if trimmed == "" {
 			continue
 		}
 
-		// Parse each statement with pg_query
-		parseResult, err := pg_query.Parse(trimmed)
+		// Parse each query with pg_query
+		parseResult, err := pg_query.ParseToJSON(trimmed)
 		if err != nil {
 			// Skip statements that can't be parsed
 			continue
 		}
 
-		statementsData = append(statementsData, map[string]any{
-			"sql":          trimmed,
+		qData = append(qData, map[string]any{
+			"query":        trimmed,
 			"parse_result": parseResult,
 		})
 	}
 
-	return map[string]any{"statements": statementsData}, nil
+	return map[string]any{
+		"query": qData,
+	}, nil
 }
 
 func main() {
@@ -130,19 +132,21 @@ func main() {
 					log.Fatal("source missing sourceFile")
 				}
 
-				sourceType, ok := source["type"].(string)
+				f, ok := source["function"].(string)
 				if !ok {
-					log.Fatal("source missing type")
+					log.Fatal("source missing function")
 				}
 
-				if sourceType == "schema" {
-					schema, err := loadSchema(sourceFile)
+				if f == "loadSchema" {
+					ls, err := loadSchema(sourceFile)
 					if err != nil {
 						log.Fatalf("error loading schema %s: %v", sourceFile, err)
 					}
-					ctx.Set("schema", schema)
+					ctx.Set("schema", ls)
 				}
 				// Other source types can be handled here
+
+				// TODO load mulitple files loading same function. appending data to existing data
 			}
 		}
 

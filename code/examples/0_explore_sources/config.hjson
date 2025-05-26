@@ -6,7 +6,7 @@
             sources: [
                 {
                     sourceFile: ./sources/schema.sql
-                    type: schema
+                    function: loadSchema
                 }
             ]
         }
