@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -66,15 +67,28 @@ func loadSchema(file string) (map[string]any, error) {
 		}
 
 		// Parse each query with pg_query
-		parseResult, err := pg_query.ParseToJSON(trimmed)
+		// parseResult, err := pg_query.Parse(trimmed)
+		// if err != nil {
+		// 	// Skip statements that can't be parsed
+		// 	continue
+		// }
+
+		// Convert parseResult to map[string]any
+		jsonStr, err := pg_query.ParseToJSON(trimmed)
 		if err != nil {
-			// Skip statements that can't be parsed
+			// Skip if JSON conversion fails
+			continue
+		}
+
+		var resultMap map[string]any
+		if err := json.Unmarshal([]byte(jsonStr), &resultMap); err != nil {
+			// Skip if JSON unmarshaling fails
 			continue
 		}
 
 		qData = append(qData, map[string]any{
 			"query":        trimmed,
-			"parse_result": parseResult,
+			"parse_result": resultMap,
 		})
 	}
 

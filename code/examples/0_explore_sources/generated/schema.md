@@ -18,12 +18,12 @@ map[generatedFile:./generated/schema.md sources:[map[function:loadSchema sourceF
 
 **TODO** config and schema should be replaced with file names - and type (renamed to source handler)
 
-map[query:[map[parse_result:{&#34;version&#34;:170004,&#34;stmts&#34;:[{&#34;stmt&#34;:{&#34;CreateStmt&#34;:{&#34;relation&#34;:{&#34;relname&#34;:&#34;author&#34;,&#34;inh&#34;:true,&#34;relpersistence&#34;:&#34;p&#34;,&#34;location&#34;:31},&#34;tableElts&#34;:[{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;id&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;bigserial&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:48},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_PRIMARY&#34;,&#34;location&#34;:58}}],&#34;location&#34;:43}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;name&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:79},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_NOTNULL&#34;,&#34;location&#34;:89}}],&#34;location&#34;:74}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;bio&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:126},&#34;is_local&#34;:true,&#34;location&#34;:121}}],&#34;oncommit&#34;:&#34;ONCOMMIT_NOOP&#34;}}}]} query:-- I&#39;m a comment
+map[query:[map[parse_result:map[stmts:[map[stmt:map[CreateStmt:map[oncommit:ONCOMMIT_NOOP relation:map[inh:true location:31 relname:author relpersistence:p] tableElts:[map[ColumnDef:map[colname:id constraints:[map[Constraint:map[contype:CONSTR_PRIMARY location:58]]] is_local:true location:43 typeName:map[location:48 names:[map[String:map[sval:bigserial]]] typemod:-1]]] map[ColumnDef:map[colname:name constraints:[map[Constraint:map[contype:CONSTR_NOTNULL location:89]]] is_local:true location:74 typeName:map[location:79 names:[map[String:map[sval:text]]] typemod:-1]]] map[ColumnDef:map[colname:bio is_local:true location:121 typeName:map[location:126 names:[map[String:map[sval:text]]] typemod:-1]]]]]]]] version:170004] query:-- I&#39;m a comment
 CREATE TABLE author (
   id   BIGSERIAL PRIMARY KEY,
   name text      NOT NULL, -- In line comment
   bio  text
-)] map[parse_result:{&#34;version&#34;:170004,&#34;stmts&#34;:[{&#34;stmt&#34;:{&#34;CreateStmt&#34;:{&#34;relation&#34;:{&#34;relname&#34;:&#34;book&#34;,&#34;inh&#34;:true,&#34;relpersistence&#34;:&#34;p&#34;,&#34;location&#34;:68},&#34;tableElts&#34;:[{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;id&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;bigserial&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:90},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_PRIMARY&#34;,&#34;location&#34;:100}}],&#34;location&#34;:78}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;name&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:128},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_NOTNULL&#34;,&#34;location&#34;:138}}],&#34;location&#34;:116}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;description&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:163},&#34;is_local&#34;:true,&#34;location&#34;:151}}],&#34;oncommit&#34;:&#34;ONCOMMIT_NOOP&#34;}}}]} query:/* I also deserve a comment
+)] map[parse_result:map[stmts:[map[stmt:map[CreateStmt:map[oncommit:ONCOMMIT_NOOP relation:map[inh:true location:68 relname:book relpersistence:p] tableElts:[map[ColumnDef:map[colname:id constraints:[map[Constraint:map[contype:CONSTR_PRIMARY location:100]]] is_local:true location:78 typeName:map[location:90 names:[map[String:map[sval:bigserial]]] typemod:-1]]] map[ColumnDef:map[colname:name constraints:[map[Constraint:map[contype:CONSTR_NOTNULL location:138]]] is_local:true location:116 typeName:map[location:128 names:[map[String:map[sval:text]]] typemod:-1]]] map[ColumnDef:map[colname:description is_local:true location:151 typeName:map[location:163 names:[map[String:map[sval:text]]] typemod:-1]]]]]]]] version:170004] query:/* I also deserve a comment
    on a second line.
 */
 CREATE TABLE book (
@@ -45,14 +45,20 @@ CREATE TABLE author (
 ```
 
 **Parse Result**
+map[stmts:[map[stmt:map[CreateStmt:map[oncommit:ONCOMMIT_NOOP relation:map[inh:true location:31 relname:author relpersistence:p] tableElts:[map[ColumnDef:map[colname:id constraints:[map[Constraint:map[contype:CONSTR_PRIMARY location:58]]] is_local:true location:43 typeName:map[location:48 names:[map[String:map[sval:bigserial]]] typemod:-1]]] map[ColumnDef:map[colname:name constraints:[map[Constraint:map[contype:CONSTR_NOTNULL location:89]]] is_local:true location:74 typeName:map[location:79 names:[map[String:map[sval:text]]] typemod:-1]]] map[ColumnDef:map[colname:bio is_local:true location:121 typeName:map[location:126 names:[map[String:map[sval:text]]] typemod:-1]]]]]]]] version:170004]
+
+version: 170004
+
+  
+
+    
+map[oncommit:ONCOMMIT_NOOP relation:map[inh:true location:31 relname:author relpersistence:p] tableElts:[map[ColumnDef:map[colname:id constraints:[map[Constraint:map[contype:CONSTR_PRIMARY location:58]]] is_local:true location:43 typeName:map[location:48 names:[map[String:map[sval:bigserial]]] typemod:-1]]] map[ColumnDef:map[colname:name constraints:[map[Constraint:map[contype:CONSTR_NOTNULL location:89]]] is_local:true location:74 typeName:map[location:79 names:[map[String:map[sval:text]]] typemod:-1]]] map[ColumnDef:map[colname:bio is_local:true location:121 typeName:map[location:126 names:[map[String:map[sval:text]]] typemod:-1]]]]]
+    
 
 
-**Type:** unknown
+  
 
-{&#34;version&#34;:170004,&#34;stmts&#34;:[{&#34;stmt&#34;:{&#34;CreateStmt&#34;:{&#34;relation&#34;:{&#34;relname&#34;:&#34;author&#34;,&#34;inh&#34;:true,&#34;relpersistence&#34;:&#34;p&#34;,&#34;location&#34;:31},&#34;tableElts&#34;:[{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;id&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;bigserial&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:48},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_PRIMARY&#34;,&#34;location&#34;:58}}],&#34;location&#34;:43}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;name&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:79},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_NOTNULL&#34;,&#34;location&#34;:89}}],&#34;location&#34;:74}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;bio&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:126},&#34;is_local&#34;:true,&#34;location&#34;:121}}],&#34;oncommit&#34;:&#34;ONCOMMIT_NOOP&#34;}}}]}
-
-// here
-
+//here
 
 
 ## query
@@ -69,13 +75,19 @@ CREATE TABLE book (
 ```
 
 **Parse Result**
+map[stmts:[map[stmt:map[CreateStmt:map[oncommit:ONCOMMIT_NOOP relation:map[inh:true location:68 relname:book relpersistence:p] tableElts:[map[ColumnDef:map[colname:id constraints:[map[Constraint:map[contype:CONSTR_PRIMARY location:100]]] is_local:true location:78 typeName:map[location:90 names:[map[String:map[sval:bigserial]]] typemod:-1]]] map[ColumnDef:map[colname:name constraints:[map[Constraint:map[contype:CONSTR_NOTNULL location:138]]] is_local:true location:116 typeName:map[location:128 names:[map[String:map[sval:text]]] typemod:-1]]] map[ColumnDef:map[colname:description is_local:true location:151 typeName:map[location:163 names:[map[String:map[sval:text]]] typemod:-1]]]]]]]] version:170004]
+
+version: 170004
+
+  
+
+    
+map[oncommit:ONCOMMIT_NOOP relation:map[inh:true location:68 relname:book relpersistence:p] tableElts:[map[ColumnDef:map[colname:id constraints:[map[Constraint:map[contype:CONSTR_PRIMARY location:100]]] is_local:true location:78 typeName:map[location:90 names:[map[String:map[sval:bigserial]]] typemod:-1]]] map[ColumnDef:map[colname:name constraints:[map[Constraint:map[contype:CONSTR_NOTNULL location:138]]] is_local:true location:116 typeName:map[location:128 names:[map[String:map[sval:text]]] typemod:-1]]] map[ColumnDef:map[colname:description is_local:true location:151 typeName:map[location:163 names:[map[String:map[sval:text]]] typemod:-1]]]]]
+    
 
 
-**Type:** unknown
+  
 
-{&#34;version&#34;:170004,&#34;stmts&#34;:[{&#34;stmt&#34;:{&#34;CreateStmt&#34;:{&#34;relation&#34;:{&#34;relname&#34;:&#34;book&#34;,&#34;inh&#34;:true,&#34;relpersistence&#34;:&#34;p&#34;,&#34;location&#34;:68},&#34;tableElts&#34;:[{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;id&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;bigserial&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:90},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_PRIMARY&#34;,&#34;location&#34;:100}}],&#34;location&#34;:78}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;name&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:128},&#34;is_local&#34;:true,&#34;constraints&#34;:[{&#34;Constraint&#34;:{&#34;contype&#34;:&#34;CONSTR_NOTNULL&#34;,&#34;location&#34;:138}}],&#34;location&#34;:116}},{&#34;ColumnDef&#34;:{&#34;colname&#34;:&#34;description&#34;,&#34;typeName&#34;:{&#34;names&#34;:[{&#34;String&#34;:{&#34;sval&#34;:&#34;text&#34;}}],&#34;typemod&#34;:-1,&#34;location&#34;:163},&#34;is_local&#34;:true,&#34;location&#34;:151}}],&#34;oncommit&#34;:&#34;ONCOMMIT_NOOP&#34;}}}]}
-
-// here
-
+//here
 
 

@@ -20,36 +20,27 @@ Shows how to use use a schema source.
 
 <%= inspect(schema) %>
 
-<%= for (q) in schema["query"] { %>
+<%= for (query) in schema["query"] { %>
 ## query
 
 ```sql
-<%= q["query"] %>
+<%= query["query"] %>
 ```
 
 **Parse Result**
+<%= inspect(query["parse_result"]) %>
 
-<%
-  let resultType = "unknown"
-  if (q["parse_result"] != null) {
-    if (typeof(q["parse_result"]) == "object") {
-      resultType = "object/map"
-    } else if (typeof(q["parse_result"]) == "string") {
-      resultType = "string"
-      let trimmed = q["parse_result"].trim()
-      if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
-        resultType = "JSON string"
-      }
-    }
-  } else {
-    resultType = "nil"
-  }
-%>
-**Type:** <%= resultType %>
+version: <%= query["parse_result"]["version"] %>
 
-<%= inspect(q["parse_result"]) %>
+  <%= for (stmts) in query["parse_result"]["stmts"] { %>
 
-// here
+    <%= if (stmts["stmt"]["CreateStmt"]) { %>
+<%= inspect(stmts["stmt"]["CreateStmt"]) %>
+    <% } %>
 
+
+  <% } %>
+
+//here
 
 <% } %>
